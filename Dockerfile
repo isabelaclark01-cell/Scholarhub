@@ -34,4 +34,7 @@ RUN composer install --no-dev --optimize-autoloader
 # Set permissions for Laravel storage
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Bypassing the paid shell block: Run database migrations automatically on startup
+ENTRYPOINT ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
+
 EXPOSE 80
