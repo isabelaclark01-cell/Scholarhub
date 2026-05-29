@@ -1,15 +1,16 @@
 FROM php:8.1-apache
 
-# Install system dependencies and PHP extensions required for Laravel 9
+# Install system dependencies and PHP extensions required for Laravel 9 & PostgreSQL
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libpq-dev \
     zip \
     unzip \
     git \
     curl \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    && docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
 
 # Enable Apache mod_rewrite for Laravel routing
 RUN a2enmod rewrite
