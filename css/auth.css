@@ -1,0 +1,71 @@
+/* Background setup to help center the card vertically */
+.bg-light-gray {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Matching Card container styling */
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 16px !important;
+    background-color: #ffffff;
+}
+
+/* Title text colors */
+.text-dark-slate {
+    color: #1a202c;
+    font-size: 28px;
+}
+
+/* Small label styling changes */
+.text-secondarySmall {
+    color: #4a5568;
+    font-size: 14px;
+}
+
+/* Inputs styling to blend with card container layout */
+.custom-input {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    padding: 12px 16px !important;
+    height: auto !important;
+}
+
+.custom-input:focus {
+    border-color: #cbd5e1 !important;
+    box-shadow: none !important;
+}
+
+/* Primary Form Action Button setup */
+.btn-dark-action {
+    background-color: #1e2229 !important;
+    border-color: #1e2229 !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-dark-action:hover {
+    background-color: #2d3139 !important;
+}
+
+/* Link color overrides */
+.text-primary-action {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.text-primary-action:hover {
+    text-decoration: underline;
+}
+.auth-wrapper {
+    min-height: 100vh; /* Cover the full screen height */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #b71c1c, #f44336); /* Red style stays strictly here */
+}

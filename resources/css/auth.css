@@ -1,0 +1,134 @@
+/* resources/css/auth.css */
+
+/* Core centering container */
+.auth-wrapper {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glassmorphism auth panel */
+.glass-auth-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(183, 28, 28, 0.15), 
+                0 5px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 380px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-auth-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(183, 28, 28, 0.22), 
+                0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.glass-auth-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #b71c1c;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Form structure fields */
+.form-group-custom {
+    margin-bottom: 18px;
+}
+
+.form-label-custom {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #b71c1c;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.glass-auth-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(183, 28, 28, 0.2);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    font-size: 15px;
+    color: #212529;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-auth-box input:focus {
+    background-color: #ffffff;
+    border-color: #f44336;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(244, 67, 54, 0.15);
+}
+
+/* Error validation structures */
+.glass-auth-box input.is-invalid-field {
+    border-color: #dc3545;
+}
+
+.glass-auth-box input.is-invalid-field:focus {
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.15);
+}
+
+.error-message-custom {
+    font-size: 0.75rem;
+    color: #dc3545;
+    margin-top: 5px;
+    font-weight: 500;
+    display: block;
+}
+
+/* Premium active button handlers */
+.glass-auth-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: #d32f2f;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+}
+
+.glass-auth-box button:hover {
+    background-color: #b71c1c;
+    transform: scale(1.01);
+}
+
+.glass-auth-box button:active {
+    transform: scale(0.99);
+}
+
+/* Bottom redirect anchors */
+.glass-auth-box .extra-links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.glass-auth-box .extra-links p {
+    margin: 6px 0;
+}
+
+.glass-auth-box .extra-links a {
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.glass-auth-box .extra-links a:hover {
+    text-decoration: underline;
+}
