@@ -32,8 +32,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Run composer optimization
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permissions for Laravel storage
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Create the uploads folder structure explicitly and set broad write permissions
+RUN mkdir -p /var/www/html/public/uploads/profiles
+
+# Set permissions for Laravel storage, cache, and uploads
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads
 
 # Bypassing the paid shell block: Run database migrations automatically on startup
 ENTRYPOINT ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
