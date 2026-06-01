@@ -101,11 +101,11 @@
             @csrf
             <div>
                 <label class="form-input-label">Full Student Name</label>
-                <input type="text" name="name" required placeholder="" class="form-text-input-box">
+                <input type="text" name="name" required class="form-text-input-box">
             </div>
             <div>
                 <label class="form-input-label">Student ID Number</label>
-                <input type="text" name="student_id" required placeholder="" class="form-text-input-box">
+                <input type="text" name="student_id" required class="form-text-input-box">
             </div>
             <div>
                 <label class="form-input-label">Program</label>
@@ -151,11 +151,11 @@
             @csrf @method('PUT')
             <div>
                 <label class="form-input-label">Full Student Name</label>
-                <input type="text" id="edit_name" name="name" required placeholder="" class="form-text-input-box">
+                <input type="text" id="edit_name" name="name" required class="form-text-input-box">
             </div>
             <div>
                 <label class="form-input-label">Student ID Number</label>
-                <input type="text" id="edit_student_id" name="student_id" required placeholder="" class="form-text-input-box">
+                <input type="text" id="edit_student_id" name="student_id" required class="form-text-input-box">
             </div>
             <div>
                 <label class="form-input-label">Program</label>
@@ -216,13 +216,21 @@
 </script>
 
 <style>
-    /* Desktop Structural Rules Base */
-    .app-root-container { padding: 40px 24px; background-color: #f8fafc; min-height: 100vh; width: 100%; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    .app-root-container { 
+        padding: 40px 24px; 
+        background-color: #f8fafc; 
+        min-height: 100vh; 
+        width: 100%; 
+        max-width: 100%;
+        box-sizing: border-box; 
+        font-family: system-ui, -apple-system, sans-serif; 
+        overflow-x: hidden;
+    }
     .top-action-heading-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; width: 100%; box-sizing: border-box; }
     .main-record-title { color: #0f172a; font-size: 1.75rem; font-weight: 700; margin: 0 0 6px 0; letter-spacing: -0.02em; }
     .main-record-subtitle { color: #64748b; font-size: 0.9rem; margin: 0; }
     .add-record-action-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background-color: #4f46e5; border: none; border-radius: 8px; color: #ffffff; font-size: 0.9rem; font-weight: 600; cursor: pointer; box-shadow: 0 1px 3px 0 rgba(79, 70, 229, 0.2); transition: background-color 0.2s; }
-    .search-tool-card-row { background: #ffffff; border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; margin-bottom: 24px; box-sizing: border-box; }
+    .search-tool-card-row { background: #ffffff; border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; margin-bottom: 24px; box-sizing: border-box; width: 100%; }
     .search-input-wrapper { position: relative; width: 100%; max-width: 360px; }
     .search-magnifier-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; display: flex; align-items: center; }
     .search-input-field { width: 100%; padding: 10px 16px 10px 42px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; color: #1e293b; outline: none; box-sizing: border-box; }
@@ -230,7 +238,6 @@
     .student-row-item:hover { background-color: #f8fafc; }
     .mobile-cards-view { display: none; flex-direction: column; gap: 16px; width: 100%; box-sizing: border-box; }
 
-    /* Modals Formatting Architecture Definitions */
     .system-modal-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); z-index: 9999; justify-content: center; align-items: center; padding: 16px; box-sizing: border-box; }
     .system-modal-surface { background-color: #ffffff; width: 100%; max-width: 480px; border-radius: 16px; overflow: hidden; box-sizing: border-box; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
     .system-modal-header { padding: 24px 24px 16px 24px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
@@ -246,15 +253,14 @@
     .form-cancel-secondary-btn { padding: 10px 16px; background: none; border: 1px solid #cbd5e1; border-radius: 6px; color: #475569; font-weight: 600; cursor: pointer; }
     .form-submit-primary-btn { padding: 10px 20px; background-color: #4f46e5; border: none; border-radius: 6px; color: #ffffff; font-weight: 600; cursor: pointer; }
 
-    /* Smart View Responsiveness Constraints */
-    @media (max-width: 768px) {
-        .app-root-container { padding: 24px 16px; }
+    @media (max-width: 1024px) {
+        .app-root-container { padding: 24px 16px !important; }
         .top-action-heading-bar { flex-direction: column; align-items: flex-start; gap: 20px; }
         .add-record-action-btn { width: 100%; justify-content: center; padding: 14px; }
         .search-input-wrapper { max-width: 100%; }
         .table-view-card { display: none !important; }
         .mobile-cards-view { display: flex !important; }
-        .mobile-record-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-sizing: border-box; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02); }
+        .mobile-record-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-sizing: border-box; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02); width: 100%; }
         .form-grid-dual-column { flex-direction: column; gap: 16px; }
         .form-action-button-row { flex-direction: column-reverse; gap: 10px; }
         .form-cancel-secondary-btn, .form-submit-primary-btn { width: 100%; padding: 12px; text-align: center; }
