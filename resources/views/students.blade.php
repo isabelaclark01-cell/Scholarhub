@@ -1,29 +1,29 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="app-root-container" style="padding: 40px 24px; background-color: #f8fafc; min-height: 100vh; width: 100%; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif;">
+<div class="app-root-container">
     
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; width: 100%; box-sizing: border-box;">
+    <div class="top-action-heading-bar">
         <div>
-            <h1 style="color: #0f172a; font-size: 1.75rem; font-weight: 700; margin: 0 0 6px 0; letter-spacing: -0.02em;">Student Records</h1>
-            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Review, modify, filter, or purge registered student files from ScholarHub.</p>
+            <h1 class="main-record-title">Student Records</h1>
+            <p class="main-record-subtitle">Review, modify, filter, or purge registered student files from ScholarHub.</p>
         </div>
-        <button onclick="toggleModal('addStudentModal', true)" style="display: flex; align-items: center; gap: 8px; padding: 12px 20px; background-color: #4f46e5; border: none; border-radius: 8px; color: #ffffff; font-size: 0.9rem; font-weight: 600; cursor: pointer; box-shadow: 0 1px 3px 0 rgba(79, 70, 229, 0.2); transition: background-color 0.2s;">
+        <button onclick="toggleModal('addStudentModal', true)" class="add-record-action-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             Add New Student
         </button>
     </div>
 
-    <div style="background: #ffffff; border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; margin-bottom: 24px; box-sizing: border-box;">
-        <div style="position: relative; width: 100%; max-width: 360px;">
-            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; display: flex; align-items: center;">
+    <div class="search-tool-card-row">
+        <div class="search-input-wrapper">
+            <span class="search-magnifier-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </span>
-            <input type="text" id="recordSearchBox" onkeyup="filterRecordSheets()" placeholder="Search names, courses, or IDs..." style="width: 100%; padding: 10px 16px 10px 42px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; color: #1e293b; outline: none; box-sizing: border-box;">
+            <input type="text" id="recordSearchBox" onkeyup="filterRecordSheets()" placeholder="Search names, courses, or IDs..." class="search-input-field">
         </div>
     </div>
 
-    <div class="table-view-card" style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.02); width: 100%; overflow: hidden; box-sizing: border-box;">
+    <div class="table-view-card">
         <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
             <thead>
                 <tr style="background-color: #f8fafc; border-bottom: 1px solid #e2e8f0; color: #475569; font-weight: 600;">
@@ -64,9 +64,9 @@
         </table>
     </div>
 
-    <div class="mobile-cards-view" style="display: none; flex-direction: column; gap: 16px; width: 100%; box-sizing: border-box;">
+    <div class="mobile-cards-view">
         @foreach($students as $student)
-        <div class="mobile-record-card" data-search-string="{{ strtolower($student->name . ' ' . $student->student_id . ' ' . $student->course) }}" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-sizing: border-box;">
+        <div class="mobile-record-card" data-search-string="{{ strtolower($student->name . ' ' . $student->student_id . ' ' . $student->course) }}">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
                 <div>
                     <span style="font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase;">{{ $student->student_id }}</span>
@@ -91,25 +91,25 @@
 
 </div>
 
-<div id="addStudentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); z-index: 9999; justify-content: center; align-items: center; padding: 16px; box-sizing: border-box;">
-    <div style="background-color: #ffffff; width: 100%; max-width: 480px; border-radius: 16px; overflow: hidden; box-sizing: border-box;">
-        <div style="padding: 24px 24px 16px 24px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0; color: #0f172a; font-size: 1.15rem; font-weight: 700;">Add New Student File</h3>
-            <button onclick="toggleModal('addStudentModal', false)" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">&times;</button>
+<div id="addStudentModal" class="system-modal-backdrop">
+    <div class="system-modal-surface">
+        <div class="system-modal-header">
+            <h3 class="system-modal-title">Add New Student File</h3>
+            <button onclick="toggleModal('addStudentModal', false)" class="system-modal-dismiss-btn">&times;</button>
         </div>
-        <form action="/students" method="POST" style="padding: 24px; display: flex; flex-direction: column; gap: 16px; margin: 0;">
+        <form action="/students" method="POST" class="system-modal-form-layout">
             @csrf
             <div>
-                <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Full Student Name</label>
-                <input type="text" name="name" required placeholder="Clark Isabela" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; box-sizing: border-box;">
+                <label class="form-input-label">Full Student Name</label>
+                <input type="text" name="name" required placeholder="" class="form-text-input-box">
             </div>
             <div>
-                <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Student ID Number</label>
-                <input type="text" name="student_id" required placeholder="230100000" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; box-sizing: border-box;">
+                <label class="form-input-label">Student ID Number</label>
+                <input type="text" name="student_id" required placeholder="" class="form-text-input-box">
             </div>
             <div>
-                <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Program</label>
-                <select name="course" required style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; background-color: #fff; box-sizing: border-box;">
+                <label class="form-input-label">Program</label>
+                <select name="course" required class="form-dropdown-selection-box">
                     <option value="" disabled selected hidden>Select Program Track</option>
                     <option value="BSIT">BSIT (Bachelor of Science in Information Technology)</option>
                     <option value="BSHM">BSHM (Bachelor of Science in Hospitality Management)</option>
@@ -119,48 +119,47 @@
                     <option value="BSIndT">BSIndT (Bachelor of Science in Industrial Technology)</option>
                 </select>
             </div>
-            <div style="display: flex; gap: 16px; width: 100%;">
+            <div class="form-grid-dual-column">
                 <div style="flex: 1;">
-                    <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Year Standing</label>
-                    <select name="year" required style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; background-color: #fff; box-sizing: border-box;">
+                    <label class="form-input-label">Year Standing</label>
+                    <select name="year" required class="form-dropdown-selection-box">
                         <option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option>
                     </select>
                 </div>
                 <div style="flex: 1;">
-                    <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">System Status</label>
-                    <select name="status" required style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; background-color: #fff; box-sizing: border-box;">
+                    <label class="form-input-label">System Status</label>
+                    <select name="status" required class="form-dropdown-selection-box">
                         <option value="Active">Active</option><option value="Inactive">Inactive</option>
                     </select>
                 </div>
             </div>
-            <div style="margin-top: 12px; display: flex; gap: 12px; justify-content: flex-end;">
-                <button type="button" onclick="toggleModal('addStudentModal', false)" style="padding: 10px 16px; background: none; border: 1px solid #cbd5e1; border-radius: 6px; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
-                <button type="submit" style="padding: 10px 20px; background-color: #4f46e5; border: none; border-radius: 6px; color: #ffffff; font-weight: 600; cursor: pointer;">Save Record</button>
+            <div class="form-action-button-row">
+                <button type="button" onclick="toggleModal('addStudentModal', false)" class="form-cancel-secondary-btn">Cancel</button>
+                <button type="submit" class="form-submit-primary-btn">Save Record</button>
             </div>
         </form>
     </div>
 </div>
 
-<div id="editStudentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); z-index: 9999; justify-content: center; align-items: center; padding: 16px; box-sizing: border-box;">
-    <div style="background-color: #ffffff; width: 100%; max-width: 480px; border-radius: 16px; overflow: hidden; box-sizing: border-box;">
-        <div style="padding: 24px 24px 16px 24px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0; color: #0f172a; font-size: 1.15rem; font-weight: 700;">Modify Student Profile</h3>
-            <button onclick="toggleModal('editStudentModal', false)" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">&times;</button>
+<div id="editStudentModal" class="system-modal-backdrop">
+    <div class="system-modal-surface">
+        <div class="system-modal-header">
+            <h3 class="system-modal-title">Modify Student Profile</h3>
+            <button onclick="toggleModal('editStudentModal', false)" class="system-modal-dismiss-btn">&times;</button>
         </div>
-        <form id="editFormStructure" method="POST" style="padding: 24px; display: flex; flex-direction: column; gap: 16px; margin: 0;">
+        <form id="editFormStructure" method="POST" class="system-modal-form-layout">
             @csrf @method('PUT')
             <div>
-                <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Full Student Name</label>
-                <input type="text" id="edit_name" name="name" required placeholder="Clark Isabela" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; box-sizing: border-box;">
+                <label class="form-input-label">Full Student Name</label>
+                <input type="text" id="edit_name" name="name" required placeholder="" class="form-text-input-box">
             </div>
             <div>
-                <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Student ID Number</label>
-                <input type="text" id="edit_student_id" name="student_id" required placeholder="230100000" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; box-sizing: border-box;">
+                <label class="form-input-label">Student ID Number</label>
+                <input type="text" id="edit_student_id" name="student_id" required placeholder="" class="form-text-input-box">
             </div>
             <div>
-                <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Program</label>
-                <select id="edit_course" name="course" required style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; background-color: #fff; box-sizing: border-box;">
-                    <option value="" disabled selected hidden>Select Program Track</option>
+                <label class="form-input-label">Program</label>
+                <select id="edit_course" name="course" required class="form-dropdown-selection-box">
                     <option value="BSIT">BSIT (Bachelor of Science in Information Technology)</option>
                     <option value="BSHM">BSHM (Bachelor of Science in Hospitality Management)</option>
                     <option value="BSE">BSE (Bachelor of Secondary Education)</option>
@@ -169,29 +168,23 @@
                     <option value="BSIndT">BSIndT (Bachelor of Science in Industrial Technology)</option>
                 </select>
             </div>
-            <div style="display: flex; gap: 16px; width: 100%;">
+            <div class="form-grid-dual-column">
                 <div style="flex: 1;">
-                    <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">Year Standing</label>
-                    <select id="edit_year" name="year" required style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; background-color: #fff; box-sizing: border-box;">
-                        <option value="" disabled selected hidden>Select Year</option>
-                        <option value="1">1st Year</option>
-                        <option value="2">2nd Year</option>
-                        <option value="3">3rd Year</option>
-                        <option value="4">4th Year</option>
+                    <label class="form-input-label">Year Standing</label>
+                    <select id="edit_year" name="year" required class="form-dropdown-selection-box">
+                        <option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option>
                     </select>
                 </div>
                 <div style="flex: 1;">
-                    <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px;">System Status</label>
-                    <select id="edit_status" name="status" required style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; background-color: #fff; box-sizing: border-box;">
-                        <option value="" disabled selected hidden>Select Status</option>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
+                    <label class="form-input-label">System Status</label>
+                    <select id="edit_status" name="status" required class="form-dropdown-selection-box">
+                        <option value="Active">Active</option><option value="Inactive">Inactive</option>
                     </select>
                 </div>
             </div>
-            <div style="margin-top: 12px; display: flex; gap: 12px; justify-content: flex-end;">
-                <button type="button" onclick="toggleModal('editStudentModal', false)" style="padding: 10px 16px; background: none; border: 1px solid #cbd5e1; border-radius: 6px; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
-                <button type="submit" style="padding: 10px 20px; background-color: #4f46e5; border: none; border-radius: 6px; color: #ffffff; font-weight: 600; cursor: pointer;">Update Changes</button>
+            <div class="form-action-button-row">
+                <button type="button" onclick="toggleModal('editStudentModal', false)" class="form-cancel-secondary-btn">Cancel</button>
+                <button type="submit" class="form-submit-primary-btn">Update Changes</button>
             </div>
         </form>
     </div>
@@ -221,4 +214,52 @@
         });
     }
 </script>
+
+<style>
+    /* Desktop Structural Rules Base */
+    .app-root-container { padding: 40px 24px; background-color: #f8fafc; min-height: 100vh; width: 100%; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    .top-action-heading-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; width: 100%; box-sizing: border-box; }
+    .main-record-title { color: #0f172a; font-size: 1.75rem; font-weight: 700; margin: 0 0 6px 0; letter-spacing: -0.02em; }
+    .main-record-subtitle { color: #64748b; font-size: 0.9rem; margin: 0; }
+    .add-record-action-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background-color: #4f46e5; border: none; border-radius: 8px; color: #ffffff; font-size: 0.9rem; font-weight: 600; cursor: pointer; box-shadow: 0 1px 3px 0 rgba(79, 70, 229, 0.2); transition: background-color 0.2s; }
+    .search-tool-card-row { background: #ffffff; border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; margin-bottom: 24px; box-sizing: border-box; }
+    .search-input-wrapper { position: relative; width: 100%; max-width: 360px; }
+    .search-magnifier-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; display: flex; align-items: center; }
+    .search-input-field { width: 100%; padding: 10px 16px 10px 42px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; color: #1e293b; outline: none; box-sizing: border-box; }
+    .table-view-card { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.02); width: 100%; overflow: hidden; box-sizing: border-box; }
+    .student-row-item:hover { background-color: #f8fafc; }
+    .mobile-cards-view { display: none; flex-direction: column; gap: 16px; width: 100%; box-sizing: border-box; }
+
+    /* Modals Formatting Architecture Definitions */
+    .system-modal-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); z-index: 9999; justify-content: center; align-items: center; padding: 16px; box-sizing: border-box; }
+    .system-modal-surface { background-color: #ffffff; width: 100%; max-width: 480px; border-radius: 16px; overflow: hidden; box-sizing: border-box; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+    .system-modal-header { padding: 24px 24px 16px 24px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+    .system-modal-title { margin: 0; color: #0f172a; font-size: 1.15rem; font-weight: 700; }
+    .system-modal-dismiss-btn { background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer; }
+    .system-modal-form-layout { padding: 24px; display: flex; flex-direction: column; gap: 16px; margin: 0; }
+    .form-input-label { display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px; }
+    .form-text-input-box { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; box-sizing: border-box; color: #1e293b; outline: none; }
+    .form-text-input-box:focus, .form-dropdown-selection-box:focus { border-color: #4f46e5; box-shadow: 0 0 0 1px #4f46e5; }
+    .form-dropdown-selection-box { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; background-color: #fff; box-sizing: border-box; color: #1e293b; outline: none; }
+    .form-grid-dual-column { display: flex; gap: 16px; width: 100%; }
+    .form-action-button-row { margin-top: 12px; display: flex; gap: 12px; justify-content: flex-end; }
+    .form-cancel-secondary-btn { padding: 10px 16px; background: none; border: 1px solid #cbd5e1; border-radius: 6px; color: #475569; font-weight: 600; cursor: pointer; }
+    .form-submit-primary-btn { padding: 10px 20px; background-color: #4f46e5; border: none; border-radius: 6px; color: #ffffff; font-weight: 600; cursor: pointer; }
+
+    /* Smart View Responsiveness Constraints */
+    @media (max-width: 768px) {
+        .app-root-container { padding: 24px 16px; }
+        .top-action-heading-bar { flex-direction: column; align-items: flex-start; gap: 20px; }
+        .add-record-action-btn { width: 100%; justify-content: center; padding: 14px; }
+        .search-input-wrapper { max-width: 100%; }
+        .table-view-card { display: none !important; }
+        .mobile-cards-view { display: flex !important; }
+        .mobile-record-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-sizing: border-box; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02); }
+        .form-grid-dual-column { flex-direction: column; gap: 16px; }
+        .form-action-button-row { flex-direction: column-reverse; gap: 10px; }
+        .form-cancel-secondary-btn, .form-submit-primary-btn { width: 100%; padding: 12px; text-align: center; }
+        .system-modal-surface { max-width: 100%; border-radius: 12px; }
+        .system-modal-form-layout { padding: 20px; gap: 14px; }
+    }
+</style>
 @endsection
