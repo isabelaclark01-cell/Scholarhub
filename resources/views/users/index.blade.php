@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="user-management-container" style="width: 100%; font-family: inherit;">
+<div class="container-fluid py-4" style="padding-left: 24px; padding-right: 24px;">
     
     <div class="header-segment" style="margin-bottom: 32px;">
         <h1 style="color: #0f172a; font-size: 1.75rem; font-weight: 700; margin: 0 0 8px 0; letter-spacing: -0.02em;">User Management</h1>
