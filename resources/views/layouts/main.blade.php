@@ -13,6 +13,7 @@
             padding: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             display: flex;
+            flex-direction: row;
             overflow-x: hidden;
         }
 
@@ -28,7 +29,7 @@
             left: 0;
             top: 0;
             z-index: 100;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .sidebar-brand {
@@ -93,19 +94,67 @@
             min-height: 100vh;
             box-sizing: border-box;
             overflow-x: hidden; 
+            transition: all 0.3s ease;
         }
 
-       @media (max-width: 1024px) {
-        .app-sidebar {
-            /* Completely hide the sidebar off-screen on mobile devices */
-            display: none !important; 
+        /* Viewport breakpoint optimizations for mobile screens */
+        @media (max-width: 1024px) {
+            body {
+                flex-direction: column;
+            }
+
+            .app-sidebar {
+                position: relative;
+                width: 100% !important;
+                min-height: auto;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                box-sizing: border-box;
+            }
+
+            .sidebar-brand {
+                padding: 0;
+                border-bottom: none;
+                font-size: 1.1rem;
+            }
+
+            .sidebar-menu {
+                display: flex;
+                flex-direction: row;
+                padding: 0;
+                margin: 0;
+                flex-grow: 0;
+            }
+
+            .sidebar-item a {
+                padding: 10px 15px;
+            }
+
+            .sidebar-item a:hover, .sidebar-item.active a {
+                border-left: none;
+                border-bottom: 3px solid #b71c1c;
+            }
+
+            .sidebar-footer {
+                padding: 0;
+                border-top: none;
+            }
+
+            .logout-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+                width: auto;
+            }
+
+            .main-workspace {
+                margin-left: 0 !important; 
+                width: 100%;
+                padding-top: 10px;
+            }
         }
-        .main-workspace {
-            /* Let the main page content take up 100% of the mobile screen */
-            margin-left: 0 !important; 
-            width: 100%;
-        }
-    }
     </style>
 </head>
 
