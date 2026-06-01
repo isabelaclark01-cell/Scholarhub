@@ -1,0 +1,64 @@
+/* Ensure the wrapper stretches full screen */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* Hide the mobile toggle button on desktop computers */
+.mobile-toggle-btn {
+    display: none; 
+}
+
+/* 📱 Responsive Styles for Mobile Devices (Cellphones/Tablets) */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px; /* Pulls the sidebar off-screen by default */
+        position: fixed;
+        height: 100vh;
+        z-index: 999;
+        transition: all 0.3s;
+    }
+    
+    /* When this class is added via JS, the sidebar slides smoothly into view */
+    #sidebar.active {
+        margin-left: 0; 
+    }
+
+    /* Show the floating hamburger button on mobile screens */
+    .mobile-toggle-btn {
+        display: block; 
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        border: none;
+    }
+
+    /* Dark background dim overlay when sidebar is open on mobile */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        top: 0;
+        left: 0;
+    }
+    .sidebar-overlay.active {
+        display: block;
+    }
+}

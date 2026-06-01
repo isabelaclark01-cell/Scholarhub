@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <div class="app-root-container" style="padding: 40px 24px; background-color: #f8fafc; min-height: 100vh; width: 100%; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif;">
     
     <div style="margin-bottom: 32px; text-align: left; width: 100%; box-sizing: border-box;">
