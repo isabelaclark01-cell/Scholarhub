@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@block('content')
+@section('content')
 <div class="user-management-container" style="width: 100%; font-family: inherit;">
     
     <div class="header-segment" style="margin-bottom: 32px;">
@@ -24,7 +24,7 @@
                 
                 <div class="card-top-info" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
                     <div class="user-avatar-frame" style="width: 52px; height: 52px; border-radius: 50%; background-color: #f1f5f9; display: flex; align-items: center; justify-content: center; border: 1px solid #e2e8f0; flex-shrink: 0; overflow: hidden;">
-                        @if($user->profile_photo_path)
+                        @if(isset($user->profile_photo_path) && $user->profile_photo_path)
                             <img src="{{ asset($user->profile_photo_path) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
                         @else
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -147,4 +147,4 @@
         .user-cards-grid { grid-template-columns: 1fr !important; }
     }
 </style>
-@endblock
+@endsection
