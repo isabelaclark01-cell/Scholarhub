@@ -13,7 +13,7 @@
             padding: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             display: flex;
-            overflow-x: hidden; /* Lock viewport boundary from stretching out horizontally */
+            overflow-x: hidden;
         }
 
         /* Fixed Sidebar Core Styling Layout */
@@ -87,22 +87,22 @@
         .main-workspace {
             margin-left: 260px; 
             flex-grow: 1;
-            width: 0;           /* Prevents inner tables or elements from forcing the page wide */
-            min-width: 0;       /* Overrides implicit min-width values in flexible systems */
+            width: 0;           
+            min-width: 0;       
             max-width: 100%;
             min-height: 100vh;
             box-sizing: border-box;
-            overflow-x: hidden; /* Restricts overflow leakage completely */
+            overflow-x: hidden; 
         }
 
         /* Viewport breakpoint optimizations */
         @media (max-width: 1024px) {
             .app-sidebar {
-                transform: translateX(-100%); /* Hides full panel view out of viewport on tiny displays */
+                transform: translateX(-100%); 
                 position: absolute;
             }
             .main-workspace {
-                margin-left: 0 !important; /* Reclaims horizontal area for your layout elements */
+                margin-left: 0 !important; 
                 width: 100%;
             }
         }
@@ -139,7 +139,6 @@
 @endif
 
 <style>
-    /* Top-Right Floating Position */
     .floating-toast-box {
         position: fixed;
         top: 24px;
@@ -174,14 +173,12 @@
         color: #334155;
     }
 
-    /* Entry Animations */
     .toast-fade-in {
         opacity: 1;
         transform: translateY(0);
         animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Exit Class applied by JavaScript */
     .toast-fade-out {
         opacity: 0;
         transform: translateY(-20px);
