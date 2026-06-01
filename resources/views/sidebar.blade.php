@@ -1,7 +1,6 @@
-<!-- Mobile Navigation Header (Only visible on cellphones) -->
 <div class="mobile-nav-header">
     <div class="mobile-brand-title">ScholarHub</div>
-    <button class="menu-toggle-btn" id="openSidebarBtn" onclick="toggleOffCanvasMenu()">
+    <button class="menu-toggle-btn" onclick="toggleOffCanvasMenu()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -10,14 +9,11 @@
     </button>
 </div>
 
-<!-- Backdrop Overlay for Mobile view closing drawer mechanics -->
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleOffCanvasMenu()"></div>
 
-<!-- Master Sidebar Element Container -->
 <aside class="app-sidebar" id="appSidebar">
     
     <div class="sidebar-top">
-        <!-- System Branding Header Block -->
         <div class="sidebar-brand-wrapper">
             <div class="brand-logo">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -27,7 +23,6 @@
             </div>
             <span class="brand-text">ScholarHub</span>
             
-            <!-- Mobile Close Button inside the Drawer -->
             <button class="mobile-close-btn" onclick="toggleOffCanvasMenu()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -36,9 +31,7 @@
             </button>
         </div>
         
-        <!-- Sidebar Navigation List -->
         <ul class="sidebar-menu">
-            <!-- Link Module 1: Overview Dashboard Summary -->
             <li class="sidebar-item {{ Request::is('dashboard') ? 'active' : '' }}">
                 <a href="/dashboard">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -51,7 +44,6 @@
                 </a>
             </li>
 
-            <!-- Link Module 2: Separate Workspace Student Records Manager -->
             <li class="sidebar-item {{ Request::is('students*') ? 'active' : '' }}">
                 <a href="/students">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -64,7 +56,6 @@
                 </a>
             </li>
 
-            <!-- Link Module 3: Profile System Preferences -->
             <li class="sidebar-item {{ Request::is('profile') ? 'active' : '' }}">
                 <a href="/profile">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -77,9 +68,7 @@
         </ul>
     </div>
 
-    <!-- Bottom Alignment Section Group -->
     <div class="sidebar-bottom-group">
-        <!-- Live Synchronized Identity Card Summary -->
         <div class="sidebar-profile-wrapper">
             <div class="sidebar-user-avatar">
                 @if(Auth::user()->profile_photo_path)
@@ -98,7 +87,6 @@
             </div>
         </div>
 
-        <!-- Logout Action Utility -->
         <div class="sidebar-action-footer">
             <form method="POST" action="/logout" style="margin: 0; width: 100%;">
                 @csrf

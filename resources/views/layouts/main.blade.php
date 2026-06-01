@@ -16,12 +16,12 @@
             overflow-x: hidden;
         }
 
-        /* Mobile Top Action Header Bar Default State Hidden */
+        /* Mobile Top Header - Displayed ONLY on mobile frames */
         .mobile-nav-header {
             display: none;
             background-color: #0f172a;
             color: white;
-            padding: 16px;
+            padding: 0 16px;
             align-items: center;
             justify-content: space-between;
             position: fixed;
@@ -41,6 +41,9 @@
             border: none;
             color: white;
             cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
         }
         .mobile-close-btn {
             display: none;
@@ -48,10 +51,9 @@
             border: none;
             color: #94a3b8;
             cursor: pointer;
-            margin-left: auto;
         }
 
-        /* Fixed Sidebar Core Desktop Layout */
+        /* Fixed Left Sidebar - Core Desktop Layout Styles */
         .app-sidebar {
             width: 260px;
             height: 100vh;
@@ -223,7 +225,7 @@
             flex-shrink: 0;
         }
 
-        /* Main Workspace Desktop Layout Defaults */
+        /* Desktop Main App Canvas Constraint */
         .main-workspace {
             margin-left: 260px; 
             flex-grow: 1;
@@ -231,12 +233,12 @@
             min-width: 0;       
             max-width: 100%;
             min-height: 100vh;
-            padding: 24px;
+            padding: 40px;
             box-sizing: border-box;
             overflow-x: hidden; 
         }
 
-        /* Dark Backdrop Shadow Frame overlay */
+        /* Off-canvas Dark Background Tint Overlay */
         .sidebar-backdrop {
             display: none;
             position: fixed;
@@ -244,45 +246,50 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.4);
             z-index: 190;
         }
 
-        /* --- THE OFF-CANVAS RESPONSIVE VIEWPORTS CONTROLS --- */
+        /* --- THE RESPONSIVE BREAKPOINT SPECIFICATIONS --- */
         @media (max-width: 1024px) {
             .mobile-nav-header {
-                display: flex; /* Shows the top navigation bar on mobile */
+                display: flex; /* Displays mobile toggle navigation strip bar */
             }
 
             .mobile-close-btn {
-                display: block; /* Shows individual close action X in navigation drawer drawer */
+                display: block; /* Reveals exit icon button within sidebar drawer */
             }
 
+            /* Hides sidebar off-canvas frame container to the left margin */
             .app-sidebar {
-                transform: translateX(-100%); /* Slides the sidebar completely out of view */
-                position: fixed;
-                height: 100vh;
+                transform: translateX(-100%) !important; 
+                position: fixed !important;
+                height: 100vh !important;
+                width: 280px !important;
                 box-shadow: 10px 0 25px rgba(0,0,0,0.3);
+                z-index: 200;
             }
 
+            /* Transitions sidebar out when active open class applied */
             .app-sidebar.open {
-                transform: translateX(0); /* Smoothly slides in when opened */
+                transform: translateX(0) !important; 
             }
 
             .sidebar-backdrop.active {
-                display: block; /* Turns background dim on when open */
+                display: block; /* Displays black backdrop fade curtain */
             }
 
+            /* Adapts main template area back to maximum fluid widths */
             .main-workspace {
                 margin-left: 0 !important;
                 width: 100%;
-                padding-top: 84px; /* Padding safety clearance for the fixed top navbar header */
+                padding: 20px !important;
+                padding-top: 84px !important; /* Safety height padding offset clear of top header bar */
             }
         }
     </style>
 </head>
 
-<!-- Flash Toasts View Container Logic Block -->
 @if(session('success') || session('error') || $errors->any())
     <div id="floating-toast" class="floating-toast-box toast-fade-in">
         <div class="toast-content-wrapper">
@@ -352,7 +359,6 @@
 
 <body>
 
-    <!-- Includes your dynamic off-canvas element drawer -->
     @include('sidebar')
 
     <div class="main-workspace">
