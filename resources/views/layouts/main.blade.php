@@ -95,17 +95,17 @@
             overflow-x: hidden; 
         }
 
-        /* Viewport breakpoint optimizations */
-        @media (max-width: 1024px) {
-            .app-sidebar {
-                transform: translateX(-100%); 
-                position: absolute;
-            }
-            .main-workspace {
-                margin-left: 0 !important; 
-                width: 100%;
-            }
+       @media (max-width: 1024px) {
+        .app-sidebar {
+            /* Completely hide the sidebar off-screen on mobile devices */
+            display: none !important; 
         }
+        .main-workspace {
+            /* Let the main page content take up 100% of the mobile screen */
+            margin-left: 0 !important; 
+            width: 100%;
+        }
+    }
     </style>
 </head>
 
