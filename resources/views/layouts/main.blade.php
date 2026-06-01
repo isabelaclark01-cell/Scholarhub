@@ -12,13 +12,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            display: flex; /* Positions sidebar and content blocks side-by-side */
+            display: flex;
+            overflow-x: hidden; /* Lock viewport boundary from stretching out horizontally */
         }
 
         /* Fixed Sidebar Core Styling Layout */
         .app-sidebar {
             width: 260px;
-            background-color: #1e3a8a; /* Deep corporate blue matching your profile setup */
+            background-color: #1e3a8a;
             color: white;
             min-height: 100vh;
             display: flex;
@@ -27,6 +28,7 @@
             left: 0;
             top: 0;
             z-index: 100;
+            transition: transform 0.3s ease;
         }
 
         .sidebar-brand {
@@ -57,7 +59,7 @@
         .sidebar-item a:hover, .sidebar-item.active a {
             color: white;
             background-color: rgba(255, 255, 255, 0.15);
-            border-left: 4px solid #b71c1c; /* Crimson active accent line indicators */
+            border-left: 4px solid #b71c1c;
         }
 
         .sidebar-footer {
@@ -81,15 +83,32 @@
             background-color: #b91c1c;
         }
 
-        /* Main Workspace Shift to accommodate the fixed left panel width */
+        /* Main Workspace Structural Architecture Constraints */
         .main-workspace {
             margin-left: 260px; 
             flex-grow: 1;
+            width: 0;           /* Prevents inner tables or elements from forcing the page wide */
+            min-width: 0;       /* Overrides implicit min-width values in flexible systems */
+            max-width: 100%;
             min-height: 100vh;
             box-sizing: border-box;
+            overflow-x: hidden; /* Restricts overflow leakage completely */
+        }
+
+        /* Viewport breakpoint optimizations */
+        @media (max-width: 1024px) {
+            .app-sidebar {
+                transform: translateX(-100%); /* Hides full panel view out of viewport on tiny displays */
+                position: absolute;
+            }
+            .main-workspace {
+                margin-left: 0 !important; /* Reclaims horizontal area for your layout elements */
+                width: 100%;
+            }
         }
     </style>
 </head>
+
 @if(session('success') || session('error') || $errors->any())
     <div id="floating-toast" class="floating-toast-box toast-fade-in">
         <div class="toast-content-wrapper">
@@ -179,16 +198,13 @@
         }
     }
 </style>
+
 <script>
-    // Automatically dismiss toast after exactly 3 seconds (3000ms)
     document.addEventListener('DOMContentLoaded', function () {
         const toastElement = document.getElementById('floating-toast');
         if (toastElement) {
             setTimeout(function () {
-                // Apply the fade out animation styling
                 toastElement.classList.add('toast-fade-out');
-                
-                // Remove entirely from DOM after transition completes
                 setTimeout(function () {
                     toastElement.remove();
                 }, 400); 
@@ -196,6 +212,7 @@
         }
     });
 </script>
+
 <body>
 
     @include('sidebar')
